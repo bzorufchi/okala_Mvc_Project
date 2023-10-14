@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "search";
+    Layout = "~/Views/Shared/myprojectlayoutstyles.cshtml";
+}
+
+
+@section scripts{
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}
+
+@using (Html.BeginForm())
+{
+    <h2>search</h2>
+    <p>جستجو کالایی که دارای عبارت زیر در عنوان خبر هستند.</p>
+    @Html.TextBox("TxtsearchedTitle")
+    <p>عبارات زیر در متن کالا هستند.</p>
+    @Html.TextBox("TxtsearchedText")
+    <input type="submit" value="نمایش صفحات جستجو در صفحه بعد" />
+
+}
+
+
+
+<hr />
+
+
+
+<p>نتایج جستجو را در همین صفحه نمایش بدهد</p>
+@using (Ajax.BeginForm("search2", "kala", new AjaxOptions { UpdateTargetId = "divresult", InsertionMode = InsertionMode.Replace }))
+{
+    <h2>search</h2>
+    <p>جستجو کالایی که دارای عبارت زیر در عنوان خبر هستند</p>
+    @Html.TextBox("TxtsearchedTitle")
+    <p>عبارات زیر در متن کالا هستند.</p>
+    @Html.TextBox("TxtsearchedText")
+    <input type="submit" value="نمایش صفحات جستجو در همین صفحه" />
+
+}
+<div id="divresult">
+
+</div>

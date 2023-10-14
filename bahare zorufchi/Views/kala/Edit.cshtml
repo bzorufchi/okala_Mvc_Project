@@ -1,0 +1,121 @@
+﻿@model bahare_zorufchi.Models.kala
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/myprojectlayoutstyles.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm("Edit", "kala", FormMethod.Post, new {id="form",enctype="multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>kala</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.categoryID, htmlAttributes: new { @class = "control-label col-md-2" })
+
+        <div class="col-md-10">
+            @Html.DropDownListFor(x => x.categoryID, new[]{
+           new SelectListItem{Text="انواع کرم",Value="1"},new SelectListItem{Text="انواع آب رسان",Value="2"},
+           new SelectListItem{Text="انواع رژلب",Value="3"},
+             new SelectListItem{Text="انواع کیف ارایشی",Value="4"},  new SelectListItem{Text="انواه شوینده پوست",Value="5"},
+           new SelectListItem{Text="انواع ماسک مو",Value="6"},
+               new SelectListItem{Text="انواع براش",Value="7"} }, "یک گزینه را انتخاب کنید")
+
+
+            @Html.ValidationMessageFor(model => model.categoryID, "", new { @class = "text-danger" })
+
+
+        </div>
+
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Producer, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Producer, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Producer, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImageURL, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.ImageURL, new { htmlAttributes = new { @class = "form-control" } })
+            <img src="@Url.Content(Model.ImageURL)" style="width:200px;height:170px;">
+            <input type="file" id="Avatar" name="picture"/>
+
+            @Html.ValidationMessageFor(model => model.ImageURL, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Original_Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Original_Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Original_Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Discount_Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Discount_Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Discount_Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsAvailable, "در انبار موجود", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.RadioButtonFor(b => b.IsAvailable, "true", new { @checked = "checked" })هست
+        @Html.RadioButtonFor(b => b.IsAvailable, "false")نیست
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.IsAvailable)
+                @Html.ValidationMessageFor(model => model.IsAvailable, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="ویرایش" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

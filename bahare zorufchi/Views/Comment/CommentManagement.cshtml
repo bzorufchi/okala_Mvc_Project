@@ -1,0 +1,73 @@
+﻿@model IEnumerable<bahare_zorufchi.Models.comment>
+
+@{
+    ViewBag.Title = "CommentManagement";
+    Layout = "~/Views/Shared/myprojectlayoutstyles.cshtml";
+}
+
+<h2>مدیریت نظرات</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.kala.Name)
+        </th>
+        <th>
+            @Html.Label("نام ")
+        </th>
+
+        <th>
+            @Html.Label("متن نظر")
+        </th>
+        <th>
+            @Html.Label("وضعیت")
+        </th>
+
+        <th>
+            @Html.Label("تایید")
+        </th>
+
+        <th>
+            @Html.Label("رد")
+        </th>
+
+        <th>
+
+        </th>
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="/News/Details/@item.kala.ID">@item.kala.Name </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAccepted)
+            </td>
+            <td>
+                <a style="color:green" href="/Comment/Accept/@item.ID">تایید </a>
+            </td>
+            <td>
+                <a style="color:orangered" href="/Comment/Reject/@item.ID">رد </a>
+            </td>
+            <td>
+                <a style="color:red" href="/Comment/Delete/@item.ID">حذف </a>
+            </td>
+        </tr>
+    }
+
+</table>
+

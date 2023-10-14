@@ -1,0 +1,1 @@
+SELECT min(Tuition) AS MinTuition from Course1

@@ -1,0 +1,1 @@
+SELECT max(Tuition) AS MaxTuition from Course1

@@ -1,0 +1,38 @@
+﻿@model bahare_zorufchi.Models.pasokh
+
+@{
+    ViewBag.Title = "Rsvpform";
+    Layout = "~/Views/Shared/myprojectlayoutstyles.cshtml";
+}
+
+@using(Html.BeginForm()) { 
+  
+<h2>ارسال یک پیام</h2>
+@Html.ValidationSummary(true,"لطفا موارد ستاره دار را پر کنید")
+<div style="margin:20px" ,direction="rtl">
+    *موضوع:@Html.DropDownListFor(a => a.Subject, new[] { new SelectListItem {Text="خدمات مشتریان" } ,new SelectListItem {Text="مدیریت فروشگاه" },new SelectListItem {Text="مسئول سایت"} }, "انتخاب")
+     @Html.ValidationMessageFor(a =>a.Subject)
+</div>
+<div style="margin:20px">
+    نام و نام خانوادگی :@Html.TextBoxFor(a => a.NameFamily)
+</div>
+<div style="margin:20px">
+    *پیام :@Html.TextAreaFor(a =>a.Text,6,50,null)
+    @Html.ValidationMessageFor(a => a.Text)
+</div>
+<div style="margin:20px">
+    ایمیل :@Html.TextBoxFor(a => a.Email)
+</div>
+<div style="margin:20px">
+    @Html.CheckBox("myCheckbox", true)جواب پیام برای من ارسال شود
+
+</div>
+<div style="margin:20px">
+@Html.RadioButtonFor(a=>a.Issatisfied, "true") از خدمات سایت راضی هستم
+@Html.RadioButtonFor(a=>a.Issatisfied, "false") از خدمات سایت راضی نیستم
+</div>
+<div style="margin:20px">
+    <input type="submit" value="ارسال" />
+    
+</div>
+}

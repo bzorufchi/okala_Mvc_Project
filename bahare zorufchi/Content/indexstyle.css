@@ -1,0 +1,102 @@
+﻿.section2 {
+    width: auto;
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 50px 30px 50px;
+}
+
+.sotun1 {
+    width: 60%;
+    height: 62vh;
+    background: url(/Content/ax/az.png );
+    background-size: cover;
+    margin-left: 20px;
+    border-radius: 15px;
+}
+
+.sotun2 .imag1 img {
+    margin-bottom: 20px;
+    border-radius: 15px;
+    height: 135px;
+}
+
+.sotun2 {
+    width: 40%;
+    height: 65vh;
+    margin-left: 20px;
+}
+
+.section3 {
+    background-color: red;
+    width: auto;
+    height: 50vh;
+    display: flex;
+    padding: 30px 30px 30px 30px;
+    justify-content: space-between;
+}
+
+    .section3 .imag2 {
+        background-color: white;
+        border-radius: 5px;
+        height: 30vh;
+        margin-top: 25px;
+        padding: 10px;
+        margin-top: 60px;
+        width: 10%;
+    }
+
+.imag2 a {
+    color: black !important;
+    font-size: 18px !important;
+}
+
+.section3 .imag2 img {
+    object-fit: cover;
+    height: 20vh;
+    padding-bottom: 10px;
+}
+
+.section3 a {
+    font-size: 25px;
+    color: white;
+    margin-right: 30px;
+}
+
+.section4 {
+    background-color: white;
+    width: auto;
+    height: 50vh;
+    display: flex;
+    padding: 30px 30px 30px 30px;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+
+    .section4 .imag3 {
+        background-color: white;
+        border-radius: 5px;
+        border-style: solid;
+        border-color: rgba(161, 161, 161, 0.7);
+        height: 30vh;
+        margin-top: 60px;
+        padding: 10px;
+        width: 10%;
+    }
+
+.imag3 a {
+    color: black !important;
+    font-size: 18px !important;
+    margin-right: 30px;
+}
+
+.section4 .imag3 img {
+    object-fit: cover;
+    height: 20vh;
+    padding-bottom: 10px;
+}
+
+.section4 a {
+    font-size: 25px;
+    color: red;
+}

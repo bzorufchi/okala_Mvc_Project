@@ -1,0 +1,219 @@
+﻿@model IEnumerable<bahare_zorufchi.Models.kala>
+
+@{
+    ViewBag.Title = "Indexkala";
+    Layout = "~/Views/Shared/myprojectlayoutstyles.cshtml";
+
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+}
+<head>
+    <style>
+        * {
+            direction: rtl;
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bakhshkala {
+            background-color: red;
+            width: auto;
+            height: 100vh;
+            display: flex;
+            padding: 30px 30px 30px 30px;
+            justify-content: space-evenly;
+            margin-top: 40px;
+        }
+
+            .bakhshkala .kala {
+                background-color: white;
+                border-radius: 40px;
+                height:390px;
+                margin-top: 25px;
+                padding: 10px;
+                margin-top: 60px;
+                width: 240px;
+                text-align: center;
+                line-height: 40px;
+                border: solid;
+                border-color: black;
+            }
+
+        .axkala img {
+            width:150px;
+            height:130px;
+            padding-bottom: 10px;
+        }
+
+        .namekala a {
+            text-decoration: none;
+            font-size: 16px;
+           
+            color: blue;
+        }
+
+        .deskala p {
+            font-size: 14px;
+           
+        }
+
+        .gheymat1 {
+           
+            font-size: 14px;
+            text-decoration: line-through;
+            color: red;
+        }
+
+        .gheymat2 a {
+            font-size: 14px;
+           
+        }
+
+        .n {
+            margin-top: 50px;
+            font-size: 25px;
+            text-align: center;
+        }
+    </style>
+</head>
+<h2 class="n">لیست تمام کالاهای فروشگاه</h2>
+
+
+
+
+    <a href="~/Controllers/kala/create"></a>
+
+    <p>
+        @Html.ActionLink("ایجاد محصول جدید", "Create")
+    </p>
+
+
+
+
+
+
+
+
+<a href="~/Controllers/kala/search"></a>
+<p>
+    @Html.ActionLink("جستجو کالا", "search")
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+@* <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.categoryID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Original_Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discount_Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAvailable)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.categoryID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageURL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Original_Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount_Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAvailable)
+            </td>
+            <td>
+
+            </td>
+        </tr>
+    }
+
+    </table>*@
+<div class="bakhshkala">
+
+    @foreach (var item in Model)
+    {
+        <div class="kala">
+            <div class="axkala"> <img src="@Url.Content(item.ImageURL)"></div>
+            <div class="namekala"><a href="./kala/details/@item.ID">@item.Name</a></div>
+            <div class="deskala"> <p>@item.Description</p></div>
+            <div class="gheymat1">@item.Original_Price</div>
+            <div class="gheymat2"> <a>@item.Discount_Price</a></div>
+
+            @Html.ActionLink("ویرایش", "Edit", new { id = item.ID })
+            @Html.ActionLink("جزئیات", "Details", new { id = item.ID })
+            @Html.ActionLink("حذف", "Delete", new { id = item.ID })
+
+
+        </div>
+    }
+</div>
+
+<div>
+    <nav style="width:fit-content; margin:0 auto">
+        <ul class="pagination">
+            @ViewBag.pagecount;
+
+            @for (int i = 1; i <= @ViewBag.pagecount; i++)
+            {
+
+                <li class="page-item @((ViewBag.PageID==i)?"active":"" )" aria-current="page">
+                    <a class="page-link" href="/kala/index/@i">@i</a>
+                </li>
+            }
+
+
+
+        </ul>
+    </nav>
+</div>
+

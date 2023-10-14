@@ -1,0 +1,38 @@
+﻿@model IEnumerable<bahare_zorufchi.Models.kala>
+
+
+
+
+
+@if (Model.Count() != 0)
+{
+   
+
+        <div>
+
+            @foreach (var item in Model)
+            {
+                <div style="width: 240px; height: 340px;background-color:aqua;border-radius:40px;border:solid black;background-color:white;float:right; ">
+                    <div style="width: 220px; height: 185px;margin-right:10px;margin-bottom:25px;"> <img style="border-radius: 30px;" src="@Url.Content(item.ImageURL)"></div>
+                    <div style="text-align:center"><a href="./kala/details/@item.ID">@item.Name</a></div>
+                    <div style="text-align:center"> <p>@item.Description</p></div>
+                    <del><div style="text-align: center; color: red;">@item.Original_Price</div></del>
+                    <div style="text-align:center;"> <a>@item.Discount_Price</a></div>
+
+
+
+
+                </div>
+            }
+        </div>
+
+   
+}
+
+
+
+else
+{
+    <p>هیچ موردی پیدا نشد</p>
+}
+

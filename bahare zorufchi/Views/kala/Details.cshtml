@@ -1,0 +1,193 @@
+﻿@model bahare_zorufchi.Models.kala
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/myprojectlayoutstyles.cshtml";
+}
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}
+
+<h2 style="text-align:center;">جزییات کالا</h2>
+@using (Html.BeginForm("Addlike", "kala", new {id=Model.ID}))
+            {
+                <input type="submit" value="❤️" style="border:1px solid"/>
+            }
+<div>@Html.DisplayFor(model => model.like)</div>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal" >
+        <dd>
+            <div style="width:300px; height:300px" class="axkala"> <img style="width:100%; height:100%" src="@Url.Content(Model.ImageURL)"></div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.categoryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.Name)
+            @Model.category.Name
+
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+
+
+        </dt>
+
+        <dd>
+            @* @Html.DisplayFor(model => model.Name)*@
+            
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Original_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Original_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount_Price)
+            @Html.Label("گروه خبر")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount_Price)
+            @*@Model.category.Name;*@
+        </dd>
+
+
+
+
+
+
+        
+            @*@Html.DisplayNameFor(model => model.IsAvailable)*@
+            @if (Model.IsAvailable == true)
+            {
+                <div style="background-color:forestgreen;width:100px;height:40px;text-align:center; ">موجود هست</div>
+            }
+            else
+            {
+                <div style="background-color:crimson;width:100px;height:40px;text-align:center;">موجود نیست</div>
+            }
+
+
+        
+
+        <dd>
+            @*@Html.DisplayFor(model => model.IsAvailable)*@
+        </dd>
+
+    </dl>
+</div>
+
+<br><br><br>
+
+@*<div id="AddComment">
+        @using (Html.BeginForm()) {
+
+            <div>
+                <label>نام:</label>
+                <input type="text" name="Name" /><!--  hatman bayad vijegi name dashte bashand ta be samte server ersal shavand -->
+            </div>
+            <div>
+                <label>ایمیل:</label>
+                <input type="text" name="Email" /><!--  hatman bayad vijegi name dashte bashand ta be samte server ersal shavand -->
+            </div>
+            <div>
+                <label>نظر شما : </label>
+                <textarea cols="30" rows="10" name="Text"></textarea><!--  hatman bayad vijegi name dashte bashand ta be samte server ersal shavand -->
+            </div>
+            <div>
+               <input type="submit" value="ثبت نظر" />
+            </div>
+        }
+    </div>*@
+
+
+<div>
+    @using (Ajax.BeginForm("Details", "Kala", new AjaxOptions { UpdateTargetId = "divcommentlist", InsertionMode = InsertionMode.Replace }))
+    {
+        <div>
+            <label>نام</label>
+            <input type="text" name="Name" />
+        </div>
+        <div>
+            <label>ایمیل</label>
+            <input type="text" name="Email" />
+        </div>
+        <div>
+            <label>متن</label>
+            <textarea cols="30" rows="10" name="Text"></textarea>
+        </div>
+        <div>
+            <input type="submit" value="ثبت نظر" />
+        </div>
+    }
+</div>
+<h3>لیست کامنت ها</h3>
+
+<div id="divcommentlist">
+
+    
+        @foreach (var CommentItem in Model.comments.OrderByDescending(p => p.ID))
+        {
+            <div>
+                @CommentItem.Name : @CommentItem.Text
+
+                @if (CommentItem.IsAccepted == false)
+                {
+                    @Html.ActionLink("تأیید ", "Accept", "Comment", new { id = CommentItem.ID }, null)
+                }
+                else
+                {
+                    <a href="/Comment/Reject/@CommentItem.ID">رد</a>
+                }
+            </div>
+        }
+   
+
+    
+        @*@foreach (var CommentItem in Model.comments.Where(z => z.IsAccepted == true).OrderByDescending(p => p.ID))
+        {
+            <div> @CommentItem.Name : @CommentItem.Text </div>
+        }*@
+    
+
+
+
+
+
+
+</div>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

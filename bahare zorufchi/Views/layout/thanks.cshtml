@@ -1,0 +1,22 @@
+﻿@model bahare_zorufchi.Models.pasokh
+
+@{
+    ViewBag.Title = "thanks";
+    Layout = "~/Views/Shared/myprojectlayoutstyles.cshtml";
+}
+
+<h2>متشکرم</h2>
+<h2>
+     @Html.DisplayFor(a => a.NameFamily)
+    
+</h2>
+ @if(Model.Issatisfied==true)
+{
+    <p>خوشحالم که از سایت ما راضی هستید</p>
+
+}
+ else
+{
+    <p>در جهت بهبود امکانات سایت تلاش خواهیم کرد</p>
+}
+
